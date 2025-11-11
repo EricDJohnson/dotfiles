@@ -54,3 +54,8 @@
 	defaultBranch = main
 [rebase]
 	autosquash = true
+[user]
+	email = eric_johnson@eva.mpg.de
+	name = Eric D. Johnson
+[pull]
+	rebase = true
