@@ -18,6 +18,7 @@ setopt prompt_subst
 # Environment diagnostic data
 export LOCALE="en_US.UTF-8"
 export LANG="en_US.UTF-8"
+export LC_ALL=en_US.UTF-8
 
 platform='unknown'
 unamestr=`uname`
@@ -45,6 +46,19 @@ else
 → '
 fi
 
+#History file configuration
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+[ "$HISTSIZE" -lt 50000 ] && HISTSIZE=50000
+[ "$SAVEHIST" -lt 10000 ] && SAVEHIST=10000
+
+# History command configuration
+setopt extended_history       # record timestamp of command in HISTFILE
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+setopt share_history          # share command history data
+
 # ZSH Settings (LOCAL)
 ## The local version of this file
 safesource "$HOME/.zshrc.local"
@@ -68,3 +82,8 @@ safepathprepend $HOME/.bin.local
 safesource $HOME/.rvm/scripts/rvm
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Created by `pipx` on 2024-06-26 11:54:53
+export PATH="$PATH:/home/ericj/.local/bin"
+export PATH=$PATH:/snap/bin
+export ANSIBLE_CONFIG=./ansible.cfg
